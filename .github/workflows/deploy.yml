@@ -1,0 +1,53 @@
+name: ⏳ Build and Deploy
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build-and-deploy:
+    name: Build and Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🗃 Checkout
+        uses: actions/checkout@v3
+
+      - name: 📥 Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.12.1
+
+      - name: 📦 Lookup build cache
+        id: build-cache
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.yarn/cache
+            **/node_modules
+            ${{ github.workspace }}/.next/cache
+          # Generate a new cache whenever packages or source files change
+          key: ${{ runner.os }}-next-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**.js') }}
+          # If source files changed but packages didn't, rebuild from a prior cache
+          restore-keys: ${{ runner.os }}-next-${{ hashFiles('**/yarn.lock') }}-
+
+      - name: ❄ Install dependencies
+        if: steps.build-cache.outputs.cache-hit != 'true'
+        run: yarn --frozen-lockfile --cache-folder ~/.yarn/cache
+
+      - name: ⚡ Build site
+        run: yarn build && yarn export
+
+      - name: 🔎 Deploy to Preview
+        if: ${{ (github.event_name == 'pull_request') }}
+        run: ./node_modules/.bin/netlify deploy --dir out --message "${{ github.event.pull_request.title }}"
+        env:
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+
+      - name: 🚀 Deploy to Production
+        if: ${{ (github.ref == 'refs/heads/main' && github.event_name == 'push') }}
+        run: ./node_modules/.bin/netlify deploy --dir out --message "$(git log -1 --format=%s)" --prod
+        env:
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
