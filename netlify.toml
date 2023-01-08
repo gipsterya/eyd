@@ -1,0 +1,52 @@
+[build]
+  command = "yarn build && yarn export"
+  publish = "out"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "accelerometer=(), autoplay=(), encrypted-media=(), geolocation=(), gyroscope=()"
+    Content-Security-Policy = "connect-src *; default-src 'self'; font-src 'self' blob: data:; img-src * blob: data:; script-src 'self' 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline';"
+    
+[[headers]]
+  for = "*.css"
+  [headers.values]
+    cache-control = '''
+    max-age=31536000,
+    public,
+    immutable'''
+
+[[headers]]
+  for = "*.js"
+  [headers.values]
+    cache-control = '''
+    max-age=31536000,
+    public,
+    immutable'''
+
+[[headers]]
+  for = "*/sw.js"
+  [headers.values]
+    cache-control = '''
+    max-age=0,
+    public,
+    must-revalidate'''
+
+[[headers]]
+  for = "*.woff2"
+  [headers.values]
+    cache-control = '''
+    max-age=31536000,
+    public,
+    immutable'''
+
+[[headers]]
+  for = "*.png"
+  [headers.values]
+    cache-control = '''
+    max-age=31536000,
+    public,
+    immutable'''

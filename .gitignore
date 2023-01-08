@@ -1,0 +1,33 @@
+# dependencies
+node_modules
+.pnp
+.pnp.js
+
+# testing
+coverage
+
+# next.js
+.next
+out
+
+# contentlayer
+.contentlayer
+
+# production
+build
+public/sitemap.xml
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+.yarnrc
+yarn-debug.log*
+yarn-error.log*
+
+# environment
+.env.local
+
+# vercel
+.vercel

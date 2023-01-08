@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: normal;
+  font-display: swap;
+  src: url(/fonts/noto-sans.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: italic;
+  font-weight: normal;
+  font-display: swap;
+  src: url(/fonts/noto-sans-italic.woff2) format('woff2');
+}
+
+html {
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+#sidebar {
+  scrollbar-color: #ccc;
+  scrollbar-width: thin;
+}
+#sidebar > ::-webkit-scrollbar {
+  height: 0.5rem;
+  width: 0.5rem;
+}
+#sidebar > ::-webkit-scrollbar-track {
+  background-color: #ccc;
+}
+#sidebar > ::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border: 0.125rem solid #ccc;
+}
+
+.prose {
+  font-size: 85%;
+}
+
+.prose blockquote {
+  @apply py-4 px-6 md:py-6 md:px-8;
+}
+
+.prose img {
+  @apply h-auto w-2/3 md:w-1/2;
+}
+
+.prose pre {
+  @apply m-0 bg-light p-0 text-sm text-gray-800 dark:bg-dark dark:text-gray-200 md:text-lg;
+}
+
+.prose code {
+  @apply font-sans;
+}

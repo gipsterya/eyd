@@ -1,0 +1,43 @@
+{
+  "name": "eyd",
+  "description": "ejaan bahasa indonesia yang disempurnakan",
+  "author": "gigip andreas <gigip@gipsterya.com>",
+  "version": "0.0.1",
+  "license": "MIT",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gipsterya/eyd.git"
+  },
+  "dependencies": {
+    "next": "^13.1.1",
+    "next-mdx-remote": "^4.2.1",
+    "next-pwa": "^5.6.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.8",
+    "@types/node": "^18.11.18",
+    "@types/react": "^18.0.26",
+    "autoprefixer": "^10.4.13",
+    "eslint": "^8.31.0",
+    "eslint-config-next": "^13.1.1",
+    "gray-matter": "^4.0.3",
+    "postcss": "^8.4.21",
+    "prettier": "^2.8.2",
+    "prettier-plugin-tailwindcss": "^0.2.1",
+    "rehype-preset-minify": "^6.0.0",
+    "remark-gfm": "^3.0.1",
+    "tailwindcss": "^3.2.4",
+    "typescript": "^4.9.4"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "export": "next export",
+    "lint": "next lint --fix src --cache --cache-location .next/",
+    "format": "prettier --write --cache docs && prettier --write --cache src"
+  }
+}
