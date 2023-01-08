@@ -69,6 +69,10 @@ export default function SEO({
       <link rel="canonical" href={canonical} />
       <meta name="author" content={config.author.name} />
       <meta name="description" content={config.site.description} />
+      <meta
+        name="google-site-verification"
+        content="FJKhfixgwVIbwb4LSFWc4cIMotO4f9zmJVwrQdKHV2U"
+      />
 
       <meta property="og:type" content={isArticle ? 'article' : 'website'} />
       <meta property="og:locale" content="id_ID" />
