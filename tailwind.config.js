@@ -13,6 +13,10 @@ module.exports = {
       fontFamily: {
         sans: ['Noto Sans', ...fontFamily.sans],
       },
+      margin: {
+        cpsa: '-0.219em',
+        cpsb: '-0.098em',
+      },
       minWidth: {
         fit: '360px',
       },
